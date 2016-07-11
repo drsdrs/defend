@@ -7,8 +7,10 @@ class Drs
     @initGame()
 
   initGame: ->
+    @gameWidth = 256#(Math.min(1080, window.innerWidth-1))*0.6944444444444444
+    @gameHeight = 256#(Math.min(1920, window.innerHeight-1))*0.2708333333333333
     @game = new (Phaser.Game)(
-      512, 512
+      @gameWidth, @gameHeight
       Phaser.AUTO
       @
       {
@@ -18,7 +20,5 @@ class Drs
         render: @.render
       }
     )
-  gameWidth: 512
-  gameHeight: 512
   getScaling: ()->
     Math.min(window.innerWidth, window.innerHeight)/@gameWidth

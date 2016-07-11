@@ -1,5 +1,5 @@
 (function() {
-  var Bullet, Drs, PhaserGame, Weapon, createWeapon, createWeapons, fire, inits;
+  var Bullet, Drs, PhaserGame, Weapon, createWeapon, createWeapons, fire, inits, showGameHideLoader;
 
   (typeof inits === "undefined" || inits === null ? inits = [] : inits).push({
     addAttacker: function(pos, type, lvl) {
@@ -30,6 +30,7 @@
   (inits == null ? inits = [] : inits).push({
     create: function() {
       var i, j, results, that, trgPos, val0;
+      showGameHideLoader();
       that = this.game.parent;
       this.physics.startSystem(Phaser.Physics.ARCADE);
       this.stage.smoothed = false;
@@ -64,6 +65,18 @@
       return results;
     }
   });
+
+  showGameHideLoader = function() {
+    var canvas, game, loader;
+    loader = document.getElementById('loader');
+    game = document.getElementById('game');
+    canvas = document.getElementsByTagName('canvas')[0];
+    document.getElementById('gameContainer').appendChild(canvas);
+    loader.classList.add('hide');
+    loader.classList.remove('show');
+    game.classList.add('show');
+    return game.classList.remove('hide');
+  };
 
   (inits == null ? inits = [] : inits).push({
     createBullet: function() {
@@ -594,17 +607,15 @@
     }
 
     Drs.prototype.initGame = function() {
-      return this.game = new Phaser.Game(512, 512, Phaser.AUTO, this, {
+      this.gameWidth = 256;
+      this.gameHeight = 256;
+      return this.game = new Phaser.Game(this.gameWidth, this.gameHeight, Phaser.AUTO, this, {
         preload: this.preload,
         create: this.create,
         update: this.update,
         render: this.render
       });
     };
-
-    Drs.prototype.gameWidth = 512;
-
-    Drs.prototype.gameHeight = 512;
 
     Drs.prototype.getScaling = function() {
       return Math.min(window.innerWidth, window.innerHeight) / this.gameWidth;

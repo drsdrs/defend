@@ -1,25 +1,85 @@
-<html>
-<head>
+<html><head>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
   <title>streets</title>
+
   <style type="text/css">
     html, body {
       margin: 0;
       padding: 0;
       background: #121212;
+      width: 100%;
+      height: 100%;
+      overflow-x: hidden;
     }
     canvas {
-      margin: 0 auto;
       image-rendering: optimizeSpeed;
       image-rendering: -moz-crisp-edges;
       image-rendering: -webkit-optimize-contrast;
       image-rendering: optimize-contrast;
       image-rendering: pixelated;
+      width: 100%!important;
+      height: 100%!important;
     }
-  </style>
-</head>
-<body>
-  <script type="text/javascript" src="phaser/build/phaser.js"></script>
 
+    .show { display: block; }
+    .hide { display: none; }
+    .pull_left { float: left; }
+    .pull_right { float: right; }
+
+
+    .border { border: .2em solid #666; }
+    .border_dark { border: .2em solid #444; }
+    .border_light { border: .2em solid #888; }
+
+    #game {
+      position: relative;
+      top: 0;
+      left: 0;
+      width: 100%;
+      max-width: 540px;
+      margin: 0 auto;
+      padding: 0;
+    }
+
+    .mainBg {
+      position: relative;
+      top:0;
+      left:0;
+      width: 100%;
+      max-width: 1080px;
+
+    }
+
+    #gameContainer {
+      position: absolute;
+      left: 14.814814814814814%;
+      top: 13.020833333333334%;
+      width: 69.44444444444444%;
+      height: 27.08333333333333%;
+    }
+
+  </style>
+
+
+</head><body>
+
+  <div id="loader" class="show">
+    LOADING...
+  </div>
+
+  <div id="game" class="hide">
+    <img class="mainBg" src="assets/test/arcade-templatre-pixelated-toSplit.png">
+
+<!--     <button class="btn btnRotateRight"><img></button>
+    <button class="btn btnRotateLeft"><img></button>
+    <button class="btn btnAction"><img></button>
+    <button class="btn btnTurbo"><img></button> -->
+
+    <div id="gameContainer" class="" ></div>
+  </div>
+
+  <script type="text/javascript" src="phaser/build/phaser.js"></script>
   <script type="text/javascript" src="js/main.js"></script>
-</body>
-</html>
+
+</body></html>

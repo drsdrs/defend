@@ -39,6 +39,7 @@
 
 (if !inits? then inits = [] else inits).push
   create: ->
+    showGameHideLoader()
     that = @game.parent
     @physics.startSystem Phaser.Physics.ARCADE
     @stage.smoothed = false
@@ -75,6 +76,18 @@
         x: Math.random()*that.gameWidth
         y: val0
       that.addAttacker trgPos
+
+
+showGameHideLoader = ->
+  loader = document.getElementById('loader')
+  game = document.getElementById('game')
+  canvas = document.getElementsByTagName('canvas')[0]
+  document.getElementById('gameContainer').appendChild canvas
+
+  loader.classList.add 'hide'
+  loader.classList.remove 'show'
+  game.classList.add 'show'
+  game.classList.remove 'hide'
 
 (if !inits? then inits = [] else inits).push
   createBullet: ->
@@ -591,8 +604,10 @@ class Drs
     @initGame()
 
   initGame: ->
+    @gameWidth = 256#(Math.min(1080, window.innerWidth-1))*0.6944444444444444
+    @gameHeight = 256#(Math.min(1920, window.innerHeight-1))*0.2708333333333333
     @game = new (Phaser.Game)(
-      512, 512
+      @gameWidth, @gameHeight
       Phaser.AUTO
       @
       {
@@ -602,8 +617,6 @@ class Drs
         render: @.render
       }
     )
-  gameWidth: 512
-  gameHeight: 512
   getScaling: ()->
     Math.min(window.innerWidth, window.innerHeight)/@gameWidth
 

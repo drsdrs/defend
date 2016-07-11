@@ -1,5 +1,6 @@
 (if !inits? then inits = [] else inits).push
   create: ->
+    showGameHideLoader()
     that = @game.parent
     @physics.startSystem Phaser.Physics.ARCADE
     @stage.smoothed = false
@@ -36,3 +37,15 @@
         x: Math.random()*that.gameWidth
         y: val0
       that.addAttacker trgPos
+
+
+showGameHideLoader = ->
+  loader = document.getElementById('loader')
+  game = document.getElementById('game')
+  canvas = document.getElementsByTagName('canvas')[0]
+  document.getElementById('gameContainer').appendChild canvas
+
+  loader.classList.add 'hide'
+  loader.classList.remove 'show'
+  game.classList.add 'show'
+  game.classList.remove 'hide'
